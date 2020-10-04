@@ -53,5 +53,6 @@
 }
 
 .appointment-section-end {
+    width: calc(100% - 2px);
     border-right: 2px solid orange;
 }
