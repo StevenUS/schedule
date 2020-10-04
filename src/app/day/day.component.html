@@ -1,3 +1,6 @@
+<div>
+    <span>{{this.day.date.getMonth()+1}}/{{this.day.date.getDay()+1}}</span>
+</div>
 <div class="cal-day" [ngStyle]="{'height': getParentHeight() + 'px'}">
     <div *ngFor="let interval of intervals"
          class="interval"

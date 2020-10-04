@@ -76,7 +76,7 @@ export class DayComponent implements OnInit, AfterViewInit, AfterViewChecked, Do
 
     ngAfterViewChecked() {
         if (this.performanceStart) {
-            console.log(`re-rendered in: ${performance.now() - this.performanceStart}ms`);
+            console.log(`${this.day.date.getMonth()+1}/${this.day.date.getDay()+1} re-rendered in: ${performance.now() - this.performanceStart}ms`);
         }
     }
 
