@@ -1,9 +1,9 @@
 import {Component, OnInit, Input, AfterViewInit, AfterViewChecked, DoCheck} from '@angular/core';
 import {CalendarService} from '../services/calendar.service';
-import {Day} from '../models/day';
 import {Appointment} from '../models/appointment';
 import {Interval} from './models/interval';
 import {DayConfig} from '../models/day-config';
+import {Day} from '../models/day';
 
 @Component({
     selector: 'app-day',
@@ -37,8 +37,6 @@ export class DayComponent implements OnInit, AfterViewInit, AfterViewChecked, Do
     }
 
     ngOnInit() {
-        // console.log(this.day);
-
         this.performanceStart = performance.now();
 
         this.calendarService.dayConfig.asObservable().subscribe((dayConfig: DayConfig) => {
@@ -47,12 +45,14 @@ export class DayComponent implements OnInit, AfterViewInit, AfterViewChecked, Do
             this.endCal = dayConfig.endHour;
             if (this.appointments) {
                 this.buildIntervals();
-                // console.log(`rebuild day in: ${performance.now() - this.performanceStart}`)
             }
         });
 
         // get a copy
         this.appointments = this.day.appointments.map((a: Appointment) => {return {...a} as Appointment;});
+
+        // sort appointments so that the first appointment is at the top if stacked
+        this.appointments.sort(this.compare);
 
         for (let a of this.appointments) {
             this.appointmentOffsets[a.id] = 0;
@@ -78,6 +78,13 @@ export class DayComponent implements OnInit, AfterViewInit, AfterViewChecked, Do
         if (this.performanceStart) {
             console.log(`${this.day.date.getMonth()+1}/${this.day.date.getDay()+1} re-rendered in: ${performance.now() - this.performanceStart}ms`);
         }
+    }
+
+    private compare(a: Appointment, b: Appointment): number {
+        if (a.start > b.start) return 1;
+        if (b.start > a.start) return -1;
+
+        return 0;
     }
 
     private buildIntervals() {
