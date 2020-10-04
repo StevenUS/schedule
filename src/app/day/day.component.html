@@ -1,11 +1,15 @@
 <div class="cal-day">
     <div *ngFor="let interval of intervals"
          class="interval">
-        <span class="inner-interval">{{interval.hour}}</span>
+        <span class="inner-interval"
+              [ngClass]="{'onshift-interval': isOnShift(interval.hour),
+                          'shift-start-interval': interval.hour === this.startShift,
+                          'shift-end-interval': interval.hour === this.endShift
+                          }">{{interval.hour}}</span>
         <div *ngFor="let section of interval.appointmentSections"
               class="appointment-section"
               [ngClass]="{'appointment-section-start': section.start, 'appointment-section-end': section.end}"
-              [ngStyle]="{'top': 20 * (section.offset + 1) + 'px'}">
+              [ngStyle]="{'top': 20 * getOffset(section.id) + 'px'}">
             {{section.id}}
         </div>
     </div>
