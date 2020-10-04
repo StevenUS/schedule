@@ -27,19 +27,19 @@ export class ControlsComponent implements OnInit, AfterViewInit {
 
     setStartHour(event) {
         const dayConfig = this.calendarService.dayConfig.getValue();
-        dayConfig.startHour = parseInt(event.originalTarget.value);
+        dayConfig.startHour = parseInt(event.target.value);
         this.calendarService.dayConfig.next(dayConfig);
     }
 
     setEndHour(event) {
         const dayConfig = this.calendarService.dayConfig.getValue();
-        dayConfig.endHour = parseInt(event.originalTarget.value);
+        dayConfig.endHour = parseInt(event.target.value);
         this.calendarService.dayConfig.next(dayConfig);
     }
 
     setOffset(event) {
         const dayConfig = this.calendarService.dayConfig.getValue();
-        dayConfig.appointmentOffset = parseInt(event.originalTarget.value);
+        dayConfig.appointmentOffset = parseInt(event.target.value);
         this.calendarService.dayConfig.next(dayConfig);
     }
 }

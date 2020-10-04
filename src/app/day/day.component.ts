@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, AfterViewInit} from '@angular/core';
 import {CalendarService} from '../services/calendar.service';
 import {Day} from '../models/day';
 import {Appointment} from '../models/appointment';
@@ -10,7 +10,7 @@ import {DayConfig} from '../models/day-config';
     templateUrl: './day.component.html',
     styleUrls: ['./day.component.css']
 })
-export class DayComponent implements OnInit {
+export class DayComponent implements OnInit, AfterViewInit {
     // day as an input for convenience,
     // data should be retrieved from a service by a key (date)
     @Input() day: Day;
@@ -29,14 +29,18 @@ export class DayComponent implements OnInit {
 
     intervals: Interval[] = [];
 
+    private startTime: number;
+
     constructor(private calendarService: CalendarService) {
     }
 
     ngOnInit() {
-        console.log(this.day);
+        // console.log(this.day);
+
+        this.startTime = performance.now();
 
         this.calendarService.dayConfig.asObservable().subscribe((dayConfig: DayConfig) => {
-            console.log(dayConfig)
+            // console.log(dayConfig)
             this.startCal = dayConfig.startHour;
             this.endCal = dayConfig.endHour;
             if (this.appointments)
@@ -54,6 +58,11 @@ export class DayComponent implements OnInit {
         this.endShift = this.day.end;
 
         this.buildIntervals();
+
+    }
+
+    ngAfterViewInit() {
+        console.log(`day rendered in: ${performance.now() - this.startTime}ms`);
     }
 
     private buildIntervals() {

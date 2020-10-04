@@ -1,6 +1,7 @@
 <div class="cal-day">
     <div *ngFor="let interval of intervals"
-         class="interval">
+         class="interval"
+         [ngClass]="{'raise-block': isOnShift(interval.hour)}">
         <span class="inner-interval"
               [ngClass]="{'onshift-interval': isOnShift(interval.hour),
                           'shift-start-interval': interval.hour === this.startShift,
