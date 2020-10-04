@@ -112,7 +112,7 @@ export class DayComponent implements OnInit, AfterViewInit, AfterViewChecked, Do
 
     getParentHeight() {
         return Math.max(
-            this.calendarService.dayConfig.getValue().appointmentOffset * this.maxAppointmentDepth * 1.75,
+            this.calendarService.dayConfig.getValue().appointmentOffset * this.maxAppointmentDepth * 1.65,
             60
         );
     }
