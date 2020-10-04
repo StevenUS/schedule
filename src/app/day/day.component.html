@@ -1,4 +1,4 @@
-<div class="cal-day">
+<div class="cal-day" [ngStyle]="{'height': getParentHeight() + 'px'}">
     <div *ngFor="let interval of intervals"
          class="interval"
          [ngClass]="{'raise-block': isOnShift(interval.hour)}">

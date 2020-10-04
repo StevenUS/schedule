@@ -49,10 +49,9 @@
 
 .appointment-section-start {
     border-left: 2px solid orange;
-    margin-left: 1px;
+    margin-left: 2px;
 }
 
 .appointment-section-end {
     border-right: 2px solid orange;
-    margin-left: -1px;
 }
