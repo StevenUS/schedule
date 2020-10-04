@@ -18,9 +18,9 @@ position: relative;
   background: gray;
 }
 
-.quote-section {
+.appointment-section {
   border-top: 2px solid orange;
-    border-bottom: 2px solid orange;
+  border-bottom: 2px solid orange;
   height: 20px;
   position: absolute;
   width: 100%;
@@ -29,10 +29,10 @@ position: relative;
   z-index: 1;
 }
 
-.quote-section-start {
+.appointment-section-start {
   border-left: 2px solid orange;
 }
 
-.quote-section-end {
+.appointment-section-end {
     border-right: 2px solid orange;
 }

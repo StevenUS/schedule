@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DayComponent } from './day/day.component';
-import {CalendarService} from './calendar.service';
+import {CalendarService} from './services/calendar.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DayComponent,
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [CalendarService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        DayComponent,
+    ],
+    imports: [
+        BrowserModule
+    ],
+    providers: [CalendarService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

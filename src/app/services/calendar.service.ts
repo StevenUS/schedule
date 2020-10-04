@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
+import {Day} from "../models/day";
 
 @Injectable()
 export class CalendarService {
-    days: day[];
+    days: Day[];
     dayConfig = {
         startHour: 6,
         endHour: 20
