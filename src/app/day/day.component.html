@@ -1,0 +1,15 @@
+<div class="cal-day">
+  <div *ngFor="let interval of intervals"
+    class="interval">
+    <span class="inner-interval">{{interval.hour}}</span>
+    <div *ngFor="let section of interval.quoteSections"
+      class="quote-section"
+      [ngClass]="{'quote-section-start': section.start, 'quote-section-end': section.end}"
+      [ngStyle]="{'top': 20 * (section.offset + 1) + 'px'}">
+        {{section.id}}
+    </div>
+</div>
+<div>
+  <div *ngFor="let quote of quotes"
+    class="quote">
+</div>
