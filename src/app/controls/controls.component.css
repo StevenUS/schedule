@@ -1,0 +1,17 @@
+.controls {
+    display: flex;
+    margin: 10px;
+}
+
+.controls > div {
+    width: 100px;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 80%;
+}
+

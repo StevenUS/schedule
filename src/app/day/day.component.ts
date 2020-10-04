@@ -3,6 +3,7 @@ import {CalendarService} from '../services/calendar.service';
 import {Day} from '../models/day';
 import {Appointment} from '../models/appointment';
 import {Interval} from './models/interval';
+import {DayConfig} from '../models/day-config';
 
 @Component({
     selector: 'app-day',
@@ -29,12 +30,18 @@ export class DayComponent implements OnInit {
     intervals: Interval[] = [];
 
     constructor(private calendarService: CalendarService) {
-        this.startCal = this.calendarService.dayConfig.startHour;
-        this.endCal = this.calendarService.dayConfig.endHour;
     }
 
     ngOnInit() {
         console.log(this.day);
+
+        this.calendarService.dayConfig.asObservable().subscribe((dayConfig: DayConfig) => {
+            console.log(dayConfig)
+            this.startCal = dayConfig.startHour;
+            this.endCal = dayConfig.endHour;
+            if (this.appointments)
+                this.buildIntervals();
+        });
 
         // get a copy
         this.appointments = this.day.appointments.map((a: Appointment) => {return {...a} as Appointment;});
@@ -50,6 +57,8 @@ export class DayComponent implements OnInit {
     }
 
     private buildIntervals() {
+        this.intervals = [];
+
         // store quote offsets by id
         for (let hour = this.startCal; hour < this.endCal; hour++) {
 
@@ -81,6 +90,11 @@ export class DayComponent implements OnInit {
 
     isOnShift(hour: number): boolean {
         return hour >= this.startShift && hour <= this.endShift;
+    }
+
+    getConfiguredOffset() {
+        // console.log(this.calendarService.dayConfig.getValue())
+        return this.calendarService.dayConfig.getValue().appointmentOffset;
     }
 
 }

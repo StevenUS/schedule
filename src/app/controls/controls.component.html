@@ -1,0 +1,16 @@
+<div class="controls">
+    <div>
+        <label>Start Hours</label>
+        <input #startHour (change)="setStartHour($event)" type="number" min="0">
+    </div>
+
+    <div>
+        <label>End Hours</label>
+        <input #endHour (change)="setEndHour($event)" type="number" max="24">
+    </div>
+
+    <div>
+        <label>Offset</label>
+        <input #offset (change)="setOffset($event)" type="number">
+    </div>
+</div>

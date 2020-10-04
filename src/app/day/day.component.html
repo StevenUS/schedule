@@ -9,13 +9,8 @@
         <div *ngFor="let section of interval.appointmentSections"
               class="appointment-section"
               [ngClass]="{'appointment-section-start': section.start, 'appointment-section-end': section.end}"
-              [ngStyle]="{'top': 20 * getOffset(section.id) + 'px'}">
+              [ngStyle]="{'top': getConfiguredOffset() * getOffset(section.id) + 'px'}">
             {{section.id}}
-        </div>
-    </div>
-    <div>
-        <div *ngFor="let appointment of appointments"
-              class="appointment">
         </div>
     </div>
 </div>

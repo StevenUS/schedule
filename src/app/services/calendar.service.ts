@@ -1,16 +1,22 @@
 import { Injectable } from "@angular/core";
 import {Day} from "../models/day";
+import {BehaviorSubject} from 'rxjs';
+import {DayConfig} from '../models/day-config';
 
 @Injectable()
 export class CalendarService {
     days: Day[];
-    dayConfig = {
-        startHour: 6,
-        endHour: 20
-    };
+    dayConfig: BehaviorSubject<DayConfig> = new BehaviorSubject({} as DayConfig);
 
     constructor() {
         this.days = CalendarService.generateDays();
+        this.dayConfig.next(
+            {
+                startHour: 6,
+                endHour: 20,
+                appointmentOffset: 20
+            }
+        );
     }
 
     private static generateDays() {
